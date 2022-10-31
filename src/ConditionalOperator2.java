@@ -145,7 +145,7 @@ public class ConditionalOperator2 {
         }
     }
 
-    private static boolean isLeapYear(int year) {
+    static boolean isLeapYear(int year) {
         if (year % 400 == 0) {
             return true;
         }
