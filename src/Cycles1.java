@@ -72,11 +72,11 @@ public class Cycles1 {
         // Посчитайте с помощью цикла for сумму годовых накоплений, если каждый месяц вы будете откладывать по 29 000 рублей "в банку".
         // Выведите сумму накоплений за каждый месяц в консоль в формате "Месяц … , сумма накоплений равна … рублей"
         System.out.println("Task 3.1");
-        int total_capital = 0;
+        int totalCapital = 0;
         final int CAPITAL_MONTH = 29_000;
         for (int i = 1; i <= 12; i++) {
-            total_capital += CAPITAL_MONTH;
-            System.out.printf("Месяц %d, сумма накоплений равна %d рублей\n", i, total_capital);
+            totalCapital += CAPITAL_MONTH;
+            System.out.printf("Месяц %d, сумма накоплений равна %d рублей\n", i, totalCapital);
         }
         System.out.println();
 
@@ -84,12 +84,12 @@ public class Cycles1 {
         // Перепишите решение задачи выше при условии, что деньги вы откладывать будете не "в банку",
         // а в банк под проценты – 12% годовых.
         // Выведите сумму накоплений за каждый месяц в консоль в формате "Месяц … , сумма накоплений равна … рублей
-        total_capital = 0;
+        totalCapital = 0;
         System.out.println("Task 3.2");
         for (int i = 1; i <= 12; i++) {
-            total_capital *= 1.01;
-            total_capital += CAPITAL_MONTH;
-            System.out.printf("Месяц %d, сумма накоплений равна %d рублей\n", i, total_capital);
+            totalCapital *= 1.01;
+            totalCapital += CAPITAL_MONTH;
+            System.out.printf("Месяц %d, сумма накоплений равна %d рублей\n", i, totalCapital);
         }
     }
 }
