@@ -40,5 +40,125 @@ public class String1 {
         fullName = "Иванов Семён Семёнович";
         System.out.printf("Данные ФИО сотрудника — %s\n", fullName.replace('ё', 'е'));
         System.out.println();
+
+        // Task 6.1.5
+        // К нам снова обратились за помощью, но теперь уже для того, чтобы написать алгоритм,
+        // разбивающий одну строку с Ф. И. О. на три — на фамилию, имя и отчество.
+        // В качестве исходных данных используйте: Ф.И.О. сотрудника: “Ivanov Ivan Ivanovich”;
+        //  строка fullName — для хранения Ф.И.О. сотрудника в формате фамилия - имя - отчество;
+        //  переменная firstName — для хранения имени;
+        //  переменная middleName — для хранения отчества;
+        //  переменная lastName — для хранения фамилии.
+        // Решите задание с помощью метода substring().
+        // Результат программы выведите в формате:
+        // “Имя сотрудника — …”“Фамилия сотрудника — …”“Отчество сотрудника — ...”
+        System.out.println("Task 6.1.5");
+        fullName = "Ivanov Ivan Ivanovich";
+
+        lastName = getLstName(fullName);
+        firstName = getFirstName(fullName);
+        middleName = getMiddleName(fullName);
+        System.out.printf("Имя сотрудника — %s\n", firstName);
+        System.out.printf("Фамилия сотрудника — %s\n", lastName);
+        System.out.printf("Отчество сотрудника — %s\n", middleName);
+        System.out.println();
+
+        // Task 6.1.6
+        // Периодически данные в наших регистрах заполняются неверно, и Ф.И.О. сотрудников записывают со строчных букв.
+        // Такую оплошность нужно исправить, написав программу, которая преобразует написанное со строчных букв Ф.И.О.
+        // в правильный формат.
+        // В качестве исходных данных используйте строку fullName c данными “ivanov ivan ivanovich“,
+        // которые нужно преобразовать в “Ivanov Ivan Ivanovich”.
+        // Выведите результат программы в консоль в формате: “Верное написание Ф.И.О. сотрудника с заглавных букв — …”
+        System.out.println("Task 6.1.6");
+        fullName = "ivanov ivan ivanovich";
+        System.out.printf("Ошибочное написание Ф.И.О. сотрудника - %s\n", fullName);
+
+        lastName = convertInitCharToUpperCase(getLstName(fullName));
+        firstName = convertInitCharToUpperCase(getFirstName(fullName));
+        middleName = convertInitCharToUpperCase(getMiddleName(fullName));
+        System.out.printf("Верное написание Ф.И.О. сотрудника с заглавных букв — %s %s %s\n", lastName, firstName, middleName);
+        System.out.println();
+
+        // Task 6.1.7
+        // Имеется две строки. Первая: "135" Вторая: "246"
+        // Соберите из двух строк одну, содержащую данные "123456". Использовать сортировку нельзя.
+        // Набор чисел задан для понимания позиций, которые они должны занять в итоговой строке.
+        // Выведите результат в консоль в формате: “Данные строки — ….”
+        System.out.println("Task 6.1.7");
+        String s1 = "135";
+        String s2 = "2469";
+        System.out.printf("Дано: String1 - %s, String2 - %s\n", s1, s2);
+        System.out.printf("Данные строки — %s\n", mergeTwoString(s1, s2));
+        System.out.println();
+
+        // Task 6.1.8
+        // Дана строка из букв английского алфавита "aabccddefgghiijjkk".
+        // Нужно найти и напечатать буквы, которые дублируются в строке.
+        // Обратите внимание, что строка отсортирована, т.е. дубли идут друг за другом.
+        // В итоге в консоль должен быть выведен результат программы: "acdgijk".
+        System.out.println("Task 6.1.8");
+        String initialString = "aabccddefgghiijjkk";
+        System.out.printf("Исходная строка: %s\n", initialString);
+        System.out.printf("Найдены дубли: %s\n", findDuplicatesChars(initialString));
+        System.out.println();
+    }
+
+    private static String mergeTwoString(String s1, String s2) {
+        int i = 0;
+        int len1 = s1.length();
+        int len2 = s2.length();
+        StringBuilder sb = new StringBuilder();
+        boolean isExistChar;
+        do {
+            isExistChar = false;
+            if (i < len1) {
+                sb.append(s1.charAt(i));
+                isExistChar = true;
+            }
+            if (i < len2) {
+                sb.append(s2.charAt(i));
+                isExistChar = true;
+            }
+            i++;
+        } while (isExistChar);
+        return sb.toString();
+    }
+
+    private static String getLstName(String fullName) {
+        int firstSpace = fullName.indexOf(' ');
+        return fullName.substring(0, firstSpace);
+    }
+
+    private static String getFirstName(String fullName) {
+        int firstSpace = fullName.indexOf(' ');
+        int lastSpace = fullName.lastIndexOf(' ');
+        return fullName.substring(firstSpace + 1, lastSpace);
+    }
+
+    private static String getMiddleName(String fullName) {
+        int lastSpace = fullName.lastIndexOf(' ');
+        return fullName.substring(lastSpace + 1);
+    }
+
+    private static String convertInitCharToUpperCase(String lastName) {
+        StringBuilder sb = new StringBuilder(lastName);
+        sb.setCharAt(0, Character.toUpperCase(lastName.charAt(0)));
+        return sb.toString();
+    }
+
+    private static String findDuplicatesChars(String s) {
+        char[] chars = s.toCharArray();
+        StringBuilder duplicates = new StringBuilder();
+        for (int j = 0; j < chars.length - 1; j++) {
+            char currentChar = s.charAt(j);
+            char nextChar = s.charAt(j + 1);
+            if (currentChar == nextChar) {
+                if (duplicates.toString().indexOf(currentChar) == -1) {
+                    duplicates.append(currentChar);
+                }
+            }
+        }
+        return duplicates.toString();
     }
 }
