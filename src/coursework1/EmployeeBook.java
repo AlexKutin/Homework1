@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class EmployeeBook implements Iterable<Employee> {
     private static final int INIT_COUNT_EMPLOYEES = 10;
-    final static private double GROW_PARAM = 1.5;
+    private static final double GROW_PARAM = 1.5;
     private int sizeArr = 0;
     private Employee[] employees = new Employee[INIT_COUNT_EMPLOYEES];
 

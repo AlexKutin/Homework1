@@ -1,5 +1,7 @@
 package coursework1;
 
+import java.util.Objects;
+
 public class Employee {
     private static int countId = 0;
 
@@ -60,5 +62,25 @@ public class Employee {
     @Override
     public String toString() {
         return String.format("Сотрудник {id=%d, %s, Отдел=%s, зарплата=%.2f", id, getFullName(), department, salary);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Employee employee = (Employee) o;
+        // Считаем Ф.И.О. сотрудников уникальными, поэтому сравниваем только по этим полям
+        // В реальности необходимо добавить еще поля: дату и место рождения, номер паспорта
+        return  Objects.equals(firstName, employee.firstName) && Objects.equals(middleName, employee.middleName) &&
+                Objects.equals(lastName, employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, middleName, lastName);
     }
 }
